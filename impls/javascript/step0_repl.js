@@ -21,5 +21,3 @@ rl.on("line", (line) => {
 rl.on("close", () => {
   process.exit(0);
 });
-
-module.exports = { read, eval, print, rep };
