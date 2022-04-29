@@ -10,6 +10,7 @@ const tokenizeTestCases = [
   [`"foo bar"`, ['"foo bar"']],
   ["(+ 4 10)", ["(", "+", "4", "10", ")"]],
   ["'(4 10)", ["'", "(", "4", "10", ")"]],
+  [" ( 4, 10 5 ) ", ["(", "4", "10", "5", ")"]],
 ];
 
 test.each(tokenizeTestCases)("should tokenize %s", (string, tokens) => {
