@@ -12,7 +12,13 @@ const eval = (x) => x;
 const print = (x) => printStr(x);
 
 const rep = (input) => {
-  console.log(print(eval(read(input))));
+  try {
+    console.log(print(eval(read(input))));
+  } catch (e) {
+    if (e instanceof SyntaxError) {
+      console.error(e);
+    }
+  }
 };
 
 rl.setPrompt("user> ");
