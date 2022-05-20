@@ -71,4 +71,8 @@ function readAtom(token) {
   }
 }
 
-module.exports = { readForm, tokenize };
+function readStr(str) {
+  return readForm(tokenize(str));
+}
+
+module.exports = { readStr, tokenize };

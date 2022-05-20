@@ -19,7 +19,7 @@ describe("tokenize", () => {
   });
 });
 
-describe("readForm", () => {
+describe("readStr", () => {
   const readerTestCases = [
     ["3", 3],
     ["nil", null],
@@ -30,6 +30,6 @@ describe("readForm", () => {
     ["'(1 2 3)", new Quote([1, 2, 3])],
   ];
   test.each(readerTestCases)("should read %s", (program, forms) => {
-    expect(readForm(tokenize(program))).toEqual(forms);
+    expect(readStr(program)).toEqual(forms);
   });
 });
