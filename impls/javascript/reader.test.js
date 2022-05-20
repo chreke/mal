@@ -27,6 +27,9 @@ describe("readStr", () => {
     ["'foo", new Quote(new Sym("foo"))],
     ["'(+ 1 2)", new Quote([new Sym("+"), 1, 2])],
     ["'(1 2 3)", new Quote([1, 2, 3])],
+    [`"foo bar"`, "foo bar"],
+    [`"foo \\nbar"`, "foo \nbar"],
+    [`"foo \\"bar"`, `foo "bar`],
   ])("should read %s", (program, forms) => {
     expect(readStr(program)).toEqual(forms);
   });
