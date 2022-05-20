@@ -47,7 +47,7 @@ function readList(tokens) {
     }
     items.push(readForm(tokens));
   }
-  throw SyntaxError("Unmatched parentheses");
+  throw SyntaxError("unbalanced parentheses");
 }
 
 function readQuote(tokens) {
