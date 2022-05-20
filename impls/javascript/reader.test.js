@@ -1,4 +1,5 @@
-const { tokenize, readForm, Sym, Quote } = require("./reader");
+const { tokenize, readStr } = require("./reader");
+const { Sym, Quote } = require("./datatypes");
 
 describe("tokenize", () => {
   const tokenizeTestCases = [

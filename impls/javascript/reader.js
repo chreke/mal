@@ -1,22 +1,4 @@
-class Quote {
-  constructor(expression) {
-    this.expression = expression;
-  }
-
-  toString() {
-    throw Error("Not implemented");
-  }
-}
-
-class Sym {
-  constructor(name) {
-    this.name = name;
-  }
-
-  toString() {
-    return this.name;
-  }
-}
+const { Sym, Quote } = require("./datatypes");
 
 function tokenize(input) {
   const unqouteSplice = "~@";
@@ -89,4 +71,4 @@ function readAtom(token) {
   }
 }
 
-module.exports = { readForm, tokenize, Sym, Quote };
+module.exports = { readForm, tokenize };
