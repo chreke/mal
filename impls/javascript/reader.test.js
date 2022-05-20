@@ -2,7 +2,7 @@ const { tokenize, readStr } = require("./reader");
 const { Sym, Quote } = require("./datatypes");
 
 describe("tokenize", () => {
-  const tokenizeTestCases = [
+  test.each([
     [`10`, [`10`]],
     [`-10`, [`-10`]],
     [`foo`, [`foo`]],
@@ -13,14 +13,13 @@ describe("tokenize", () => {
     ["(+ 4 10)", ["(", "+", "4", "10", ")"]],
     ["'(4 10)", ["'", "(", "4", "10", ")"]],
     [" ( 4, 10 5 ) ", ["(", "4", "10", "5", ")"]],
-  ];
-  test.each(tokenizeTestCases)("should tokenize %s", (string, tokens) => {
+  ])("should tokenize %s", (string, tokens) => {
     expect(tokenize(string)).toEqual(tokens);
   });
 });
 
 describe("readStr", () => {
-  const readerTestCases = [
+  test.each([
     ["3", 3],
     ["nil", null],
     ["(+ 5 6 7)", [new Sym("+"), 5, 6, 7]],
@@ -28,8 +27,7 @@ describe("readStr", () => {
     ["'foo", new Quote(new Sym("foo"))],
     ["'(+ 1 2)", new Quote([new Sym("+"), 1, 2])],
     ["'(1 2 3)", new Quote([1, 2, 3])],
-  ];
-  test.each(readerTestCases)("should read %s", (program, forms) => {
+  ])("should read %s", (program, forms) => {
     expect(readStr(program)).toEqual(forms);
   });
 });
