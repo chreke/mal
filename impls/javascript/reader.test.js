@@ -33,4 +33,18 @@ describe("readStr", () => {
   ])("should read %s", (program, forms) => {
     expect(readStr(program)).toEqual(forms);
   });
+
+  test.each([
+    "(1 2 3",
+    "(1 (2 3",
+    "(1 (2 3)",
+    "(1 2 3))",
+    "1 2 3)",
+    `"foo`,
+    `foo"`,
+    `"foo\\"`,
+    `\\"foo`,
+  ])("should raise SyntaxError for %s", (program) => {
+    expect(() => readStr(program)).toThrow(SyntaxError);
+  });
 });
