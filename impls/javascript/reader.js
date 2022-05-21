@@ -64,11 +64,21 @@ function readAtom(token) {
   } else if (token === /true|false/) {
     return token === "true";
   } else if (token[0] === `"`) {
-    // TODO: Parse escape sequences etc
-    return token;
+    return readStringLiteral(token);
   } else {
     return new Sym(token);
   }
+}
+
+function readStringLiteral(string) {
+  if (!string[string.length - 1] === `"`) {
+    throw SyntaxError("EOF while reading string literal");
+  }
+  return string
+    .slice(1, -1)
+    .replace("\\n", "\n")
+    .replace(`\\"`, `"`)
+    .replace("\\\\", "\\");
 }
 
 function readStr(str) {
