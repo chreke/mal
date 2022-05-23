@@ -34,6 +34,8 @@ function readForm(tokens) {
     return readList(tokens);
   } else if (token === "'") {
     return readQuote(tokens);
+  } else if (token === ")") {
+    throw SyntaxError("unbalanced parentheses");
   }
   return readAtom(token);
 }
