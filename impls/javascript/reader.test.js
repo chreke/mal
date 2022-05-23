@@ -33,6 +33,19 @@ describe("readStr", () => {
     [`"foo \\nbar"`, "foo \nbar"],
     [`"foo \\"bar"`, `foo "bar`],
   ])("should read %s", (program, forms) => {
+    expect(readStr(program)[0]).toEqual(forms);
+  });
+
+  test.each([
+    ["1 2 3", [1, 2, 3]],
+    [
+      "(+ 1 2)\n(+ 3 4)",
+      [
+        [new Sym("+"), 1, 2],
+        [new Sym("+"), 3, 4],
+      ],
+    ],
+  ])("should support multiple top-level forms", (program, forms) => {
     expect(readStr(program)).toEqual(forms);
   });
 

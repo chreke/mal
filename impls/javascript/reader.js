@@ -82,7 +82,12 @@ function readStringLiteral(string) {
 }
 
 function readStr(str) {
-  return readForm(tokenize(str));
+  const tokens = tokenize(str);
+  const forms = [];
+  while (tokens.length) {
+    forms.push(readForm(tokens));
+  }
+  return forms;
 }
 
 module.exports = { readStr, tokenize };
