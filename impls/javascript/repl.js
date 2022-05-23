@@ -7,7 +7,7 @@ const rl = readline.createInterface({ input: stdin, output: stdout });
 
 const read = (x) => readStr(x);
 
-const eval = (x) => x;
+const eval = (x) => x[x.length - 1];
 
 const print = (x) => printStr(x);
 
