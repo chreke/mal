@@ -30,6 +30,7 @@ describe("readStr", () => {
     ["'(1 2 3)", new Quote([1, 2, 3])],
     [`"foo bar"`, "foo bar"],
     [`"foo \\\\bar"`, "foo \\bar"],
+    [`"foo bar\\\\"`, `foo bar\\`],
     [`"foo \\nbar"`, "foo \nbar"],
     [`"foo \\"bar"`, `foo "bar`],
   ])("should read %s", (program, forms) => {
@@ -53,12 +54,16 @@ describe("readStr", () => {
     "(1 2 3",
     "(1 (2 3",
     "(1 (2 3)",
-    "(1 2 3))",
+    ")",
     "1 2 3)",
+    "(1 2 3))",
     `"foo`,
     `foo"`,
+    `"\\"`,
+    `"\\\\\\"`,
     `"foo\\"`,
     `\\"foo`,
+    "'(1 2 3",
   ])("should raise SyntaxError for %s", (program) => {
     expect(() => readStr(program)).toThrow(SyntaxError);
   });

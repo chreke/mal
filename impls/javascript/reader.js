@@ -73,14 +73,14 @@ function readAtom(token) {
 }
 
 function readStringLiteral(string) {
-  if (!string[string.length - 1] === `"`) {
+  if (!string.match(/"(?:\\.|[^\\"])*"/)) {
     throw SyntaxError("EOF while reading string literal");
   }
   return string
-    .slice(1, -1)
     .replace("\\n", "\n")
     .replace(`\\"`, `"`)
-    .replace("\\\\", "\\");
+    .replace("\\\\", "\\")
+    .slice(1, -1);
 }
 
 function readStr(str) {
